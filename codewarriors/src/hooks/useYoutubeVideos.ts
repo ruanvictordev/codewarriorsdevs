@@ -15,7 +15,8 @@ export const useYoutubeVideos = () => {
   useEffect(() => {
     const fetchYoutubeVideos = async () => {
       try {
-        const response = await axios.get(
+        // Primeira chamada: busca vídeos e transmissões ao vivo
+        const searchResponse = await axios.get(
           `https://www.googleapis.com/youtube/v3/search`, 
           {
             params: {
@@ -23,15 +24,41 @@ export const useYoutubeVideos = () => {
               channelId: 'UCGrxYTmqKNce5E84Ij0TLvg', // Seu channel ID
               maxResults: 5, // Quantos vídeos você quer carregar
               order: 'date', // Para obter os vídeos mais recentes
+              type: 'video', // Apenas vídeos
               key: 'AIzaSyAJTTOxpV5GoKj5m7tshOi6GUSU-ETwFGI', // Sua chave API
             },
           }
         );
 
-        const videos = response.data.items
-          .filter((item: any) => item.id.kind === 'youtube#video') // Filtra apenas vídeos
+        const videoIds = searchResponse.data.items
+          .map((item: any) => item.id.videoId)
+          .join(',');
+
+        // Segunda chamada: obtendo detalhes dos vídeos
+        const detailsResponse = await axios.get(
+          `https://www.googleapis.com/youtube/v3/videos`,
+          {
+            params: {
+              part: 'snippet,contentDetails',
+              id: videoIds,
+              key: 'AIzaSyAJTTOxpV5GoKj5m7tshOi6GUSU-ETwFGI', // Sua chave API
+            },
+          }
+        );
+
+        const videos = detailsResponse.data.items
+          .filter((item: any) => {
+            const duration = item.contentDetails.duration;
+            const isLive = item.liveBroadcastContent === 'live';
+
+            // Verifica a duração maior que 3 minutos (PT3M) ou se é uma transmissão ao vivo
+            const isLongerThan3M = duration.includes('PT') && 
+              parseInt(duration.match(/(\d+)M/)?.[1] || '0') > 3;
+
+            return isLongerThan3M || isLive;
+          })
           .map((item: any) => ({
-            id: item.id.videoId,
+            id: item.id,
             title: item.snippet.title,
             thumbnail: item.snippet.thumbnails.high.url,
           }));

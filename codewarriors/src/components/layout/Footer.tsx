@@ -6,8 +6,8 @@ import { YoutubeIcon } from "lucide-react";
 
 export default function CommunityFooter() {
   return (
-    <div className="bg-secondary p-32 max-md:p-4">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center">
+    <div className="px-40 py-8 max-md:px-4 max-lg:px-11 w-full sticky top-0 z-10 border-t-[1px] border-solid border-neutral-100 dark:border-neutral-900">
+      <div className="mx-auto flex max-md:flex-col justify-between items-center gap-4">
         <div className="flex flex-col gap-1 md:text-left mb-4 md:mb-0">
           <h2 className="text-xl font-bold">Code Warriors</h2>
           <p className="text-sm">Unindo desenvolvedores para crescimento e aprendizado.</p>

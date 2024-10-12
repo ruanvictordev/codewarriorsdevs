@@ -2,7 +2,7 @@ import { Button } from "../ui/button";
 
 export default function Home() {
   return (
-    <section className="w-full h-5/6 px-32 py-28 flex justify-around gap-6 items-center max-md:flex-col max-md:py-30 max-md:px-4">
+    <section className="w-full h-5/6 flex justify-between gap-6 items-center max-md:flex-col max-md:py-30 max-md:px-4">
       <div className="flex flex-col gap-4 max-w-lg max-md:text-center">
         <h1 className="text-3xl font-bold">Code Warriors</h1>
         <p className="text-base leading-relaxed"> 

@@ -51,7 +51,7 @@ const Projects: React.FC = () => {
   const { repos, loading, error } = useFetchRepos("projeto-ativo");
 
   return (
-    <div className="p-32 max-md:p-4" id="projects">
+    <div className="flex flex-col w-full" id="projects">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold">Projetos Ativos</h1>
         <p className="text-muted-foreground">

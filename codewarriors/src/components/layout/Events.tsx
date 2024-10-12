@@ -46,7 +46,7 @@ export default function CommunityEvents() {
   const { youtubeVideos, activeVideo, setActiveVideo, loading } = useYoutubeVideos();
 
   return (
-    <div className="bg-secondary p-32 max-md:p-4" id="events">
+    <div className="flex flex-col w-full" id="events">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold">Últimos Eventos da Comunidade</h1>
         <p className="text-muted-foreground">

@@ -2,7 +2,7 @@ import { Button } from "../ui/button";
 
 export default function Wiki() {
   return (
-    <div className="bg-secondary p-32 max-md:p-4" id="about">
+    <div className="p-32 max-md:p-4" id="about">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold">Dúvidas</h1>
         <p className="text-muted-foreground">

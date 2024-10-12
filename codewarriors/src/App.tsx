@@ -12,7 +12,7 @@ export default function App() {
   return (
     <>
       <Header></Header>
-      <main className="flex flex-col gap-14">
+      <main className="flex flex-col gap-48 px-40 py-32 max-lg:px-11 max-md:px-4">
         <Home />
         <About />
         <Projects />
@@ -20,8 +20,8 @@ export default function App() {
         <Join />
         <Wiki />
         <Organizers />
-        <CommunityFooter />
       </main>
+      <CommunityFooter />
     </>
   );
 }
